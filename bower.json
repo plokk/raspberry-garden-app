@@ -1,0 +1,19 @@
+{
+  "name": "raspberry-garden-app",
+  "version": "0.0.0",
+  "homepage": "https://github.com/plokk/raspberry-garden-app",
+  "authors": [
+    "Antti Laakso, Antti Suniala"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "highcharts-ng": "~0.0.8"
+  }
+}
