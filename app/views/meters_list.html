@@ -1,9 +1,9 @@
 <h1>List meters</h1>
 
 <div ng-repeat="chart in charts">
-    <h1>{{chart.$id}}</h1>
+    <h1>{{chart.title.text}}</h1>
 
-    <highchart id="{{chart.$id}}" config="chartConfig"></highchart>
+    <highchart id="{{chart.title.text}}" config="chart"></highchart>
 
 
 </div>

@@ -1,20 +1,18 @@
-app.service('FirebaseService', function($firebaseArray){
+app.service('FirebaseService', function($firebaseArray, $firebaseObject){
     var firebaseRef = new Firebase('https://greenhouse-data.firebaseio.com/');
-    var data = $firebaseArray(firebaseRef);
 
-    this.getAllThen = function(callback) {
-        data.$loaded(function() {
-            callback(data);
+    this.getAllSensors = function(callback) {
+        var sensorRef = firebaseRef.child('sensordata');
+        var sensorData = $firebaseObject(sensorRef);
+        sensorData.$loaded(function(sensorData) {
+            callback(sensorData);
         });
     };
 
-    this.getAll = function() {
-        return data;
-    }
-
-    this.getItem = function(key, callback) {
-        data.$loaded(function() {
-            callback(data.$getRecord(key));
+    this.getSensorConfigs = function(callback) {
+        var confRef = firebaseRef.child('sensors');
+        confRef.on("value", function(snapshot) {
+            callback(snapshot.val());
         });
     };
 
