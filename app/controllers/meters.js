@@ -31,11 +31,12 @@ app.controller('ListMeters', function($scope, FirebaseService) {
     };
 
     $scope.pushToChartSeries = function(device, measureName, array) {
+        var sortedArray = array.sort($scope.compareByTimestamp);
         $scope.sensorseries[device] = $scope.sensorseries[device] || [];
         $scope.sensorseries[device].push(
             {
                 name: measureName,
-                data: array
+                data: sortedArray
             }
         );
     };
@@ -59,6 +60,10 @@ app.controller('ListMeters', function($scope, FirebaseService) {
             }
         };
         return chartconf;
+    };
+
+    $scope.compareByTimestamp = function(a, b) {
+        return (a[0] > b[0]) ? 1 : ((b[0] > a[0]) ? -1 : 0);
     };
 
     $scope.loadConfAndSensorData($scope.fillCharts);
